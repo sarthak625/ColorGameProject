@@ -19,3 +19,10 @@ body{
 h1{
 	text-align: center;
 }
+
+#message{
+	text-align: center;
+}
+span {
+	color: white;
+}

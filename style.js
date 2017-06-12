@@ -6,6 +6,8 @@ var colors = ["rgb(255, 0, 0)",
 			  "rgb(255, 0, 255)"
 			]
 var squares = document.querySelectorAll('.square');
+var message = document.querySelector('#message');
+
 
 for (var i=0;i<squares.length;i++){
 	//Add initial colors to squares
@@ -16,7 +18,12 @@ for (var i=0;i<squares.length;i++){
 		//Grab color of picked square and compare to original color
 		if (this.style.backgroundColor === pickedColor)
 		{
-			alert("Correct");
+			message.textContent = "Correct";
+		}
+		else
+		{
+			this.style.backgroundColor = "#232323";
+			message.textContent = "Try Again!!";
 		}
 	})
 }
