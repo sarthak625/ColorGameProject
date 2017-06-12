@@ -3,6 +3,7 @@ var squares = document.querySelectorAll('.square');
 var message = document.querySelector('#message');
 var pickedColor = pickColor();
 
+var h1 = document.querySelector('h1');
 for (var i=0;i<squares.length;i++){
 	//Add initial colors to squares
 	squares[i].style.backgroundColor = colors[i];
@@ -14,6 +15,7 @@ for (var i=0;i<squares.length;i++){
 		{
 			message.textContent = "Correct";
 			changeColors(pickedColor);
+			h1.style.backgroundColor = pickedColor;
 		}
 		else
 		{
@@ -57,5 +59,5 @@ function randomColor(){
 	var g = Math.floor(Math.random()*256);
 	//pick a "black" from 0 to 255
 	var b = Math.floor(Math.random()*256);
-	return "rgb("+r+" ,"+g+", "+b+")";
+	return "rgb("+r+", "+g+", "+b+")";
 }
