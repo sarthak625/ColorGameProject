@@ -3,11 +3,39 @@ var squares = document.querySelectorAll('.square');
 var message = document.querySelector('#message');
 var pickedColor = pickColor();
 var resetButton = document.querySelector('#reset');
-var easyBtn = document.querySelector('#easyBtn');
-var hardBtn = document.querySelector('#hardBtn');
+var modeButtons = document.querySelectorAll('.mode');
 var numSquares = 6;
 
-easyBtn.addEventListener("click",function(){
+for (var i=0;i<modeButtons.length;i++){
+	modeButtons[i].addEventListener("click",function(){
+		modeButtons[0].classList.remove("selected");
+		modeButtons[1].classList.remove("selected");
+		this.classList.add("selected");	
+		this.textContent === "Easy" ? numSquares=3 : numSquares = 6;	
+		reset();
+	})
+}
+
+function reset(){
+	colors = generateRandomColors(numSquares);
+	resetButton .textContent = "New Colors";
+	pickedColor = pickColor();
+	colorDisplay.textContent = pickedColor;
+	message.textContent = "";
+	for (var i=0;i<squares.length;i++){
+	//Add initial colors to squares
+		if(colors[i]){
+			squares[i].style.display = "block";
+			squares[i].style.backgroundColor = colors[i];
+		}
+		else{
+			squares[i].style.display="none";
+		}
+	}
+	h1.style.backgroundColor = "steelblue";
+}
+
+/*easyBtn.addEventListener("click",function(){
 	hardBtn.classList.remove("selected");
 	easyBtn.classList.add("selected");
 	numSquares = 3;
@@ -39,20 +67,10 @@ hardBtn.addEventListener("click",function(){
 		squares[i].style.backgroundColor = colors[i];		
 	}
 })
-
+*/
 resetButton.addEventListener("click",function(){
-	colors = generateRandomColors(numSquares);
-	resetButton .textContent = "New Colors";
-	pickedColor = pickColor();
-	colorDisplay.textContent = pickedColor;
-	message.textContent = "";
-	for (var i=0;i<squares.length;i++){
-	//Add initial colors to squares
-		squares[i].style.backgroundColor = colors[i];
-	}
-	h1.style.backgroundColor = "steelblue";
-
-})
+	reset();
+});
 
 var h1 = document.querySelector('h1');
 for (var i=0;i<squares.length;i++){
@@ -67,7 +85,7 @@ for (var i=0;i<squares.length;i++){
 			message.textContent = "Correct";
 			changeColors(pickedColor);
 			h1.style.backgroundColor = pickedColor;
-			resetButton.textContent = "PLAY AGAIN?";
+			resetButton.textContent = "Play Again?";
 		}
 		else
 		{
